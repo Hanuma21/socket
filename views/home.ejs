@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>socket io tutorial</title>
+    <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+    <!-- with thw above cdn link we can actually make the socet io work in gthe frontend as well -->
+</head>
+
+<body>
+    <input type="text" class="message">
+    <button onclick="sendMessage()">sendmessage</button>
+    <h2></h2>
+    <script>
+        const socket = io('http://localhost:3001')
+        socket.on('connection')
+        socket.on('message', (data) => {
+            document.querySelector('h2').innerHTML = data
+        })
+        const sendMessage = () => {
+            const messageinput = document.querySelector('.message')
+            const message = messageinput.value
+            socket.emit('message', message)
+        }   </script>
+</body>
+
+</html>
